@@ -3,7 +3,6 @@ package com.example.todoapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.TypedValue;
 
 import androidx.annotation.NonNull;
@@ -43,7 +42,7 @@ public class RecyclerViewTouchHelper extends ItemTouchHelper.SimpleCallback {
                     adapter.deleteTask(position);
                 }
             });
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     adapter.notifyItemChanged(position);
@@ -63,7 +62,7 @@ public class RecyclerViewTouchHelper extends ItemTouchHelper.SimpleCallback {
                 .addSwipeLeftBackgroundColor(ContextCompat.getColor(adapter.getContext() , R.color.colorPrimaryDark))
                 .addCornerRadius(TypedValue.COMPLEX_UNIT_DIP, 8)
                 .addSwipeLeftActionIcon(R.drawable.ic_edit)
-                .addSwipeRightBackgroundColor(Color.RED)
+                .addSwipeRightBackgroundColor(ContextCompat.getColor(adapter.getContext() , R.color.colorPrimary))
                 .addSwipeRightActionIcon(R.drawable.ic_delete)
                 .create()
                 .decorate();

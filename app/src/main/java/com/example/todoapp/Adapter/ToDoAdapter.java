@@ -25,15 +25,16 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
     private MainActivity activity;
     private DatabaseHelper myDatabase;
 
-    public ToDoAdapter(DatabaseHelper myDatabase, MainActivity activity){
+    public ToDoAdapter(DatabaseHelper myDB , MainActivity activity){
         this.activity = activity;
         this.myDatabase = myDatabase;
     }
 
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_layout , parent , false);
         return new MyViewHolder(v);
     }
 
@@ -44,18 +45,17 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         holder.mCheckBox.setChecked(toBoolean(item.getStatus()));
         holder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    myDatabase.updateStatus(item.getId(), 1);
-                } else {
-                    myDatabase.updateStatus(item.getId(), 0);
-                }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    myDatabase.updateStatus(item.getId() , 1);
+                }else
+                    myDatabase.updateStatus(item.getId() , 0);
             }
         });
     }
 
     public boolean toBoolean(int num){
-        return num !=0;
+        return num!=0;
     }
 
     public Context getContext(){
@@ -78,12 +78,13 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
         ToDoModel item = mList.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("id", item.getId());
-        bundle.putString("task", item.getTask());
+        bundle.putInt("id" , item.getId());
+        bundle.putString("task" , item.getTask());
 
         AddNewTask task = new AddNewTask();
         task.setArguments(bundle);
-        task.show(activity.getSupportFragmentManager(), task.getTag());
+        task.show(activity.getSupportFragmentManager() , task.getTag());
+
 
     }
 
@@ -99,5 +100,4 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.MyViewHolder> 
             mCheckBox = itemView.findViewById(R.id.mcheckbox);
         }
     }
-
 }
