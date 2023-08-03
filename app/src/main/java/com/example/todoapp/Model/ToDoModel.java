@@ -1,8 +1,9 @@
 package com.example.todoapp.Model;
 
 public class ToDoModel {
+
     private String task;
-    private int id, status;
+    private int id , status;
 
     public String getTask() {
         return task;

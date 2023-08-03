@@ -3,7 +3,6 @@ package com.example.todoapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
-import android.util.TypedValue;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.todoapp.Adapter.ToDoAdapter;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
-
 
 public class RecyclerViewTouchHelper extends ItemTouchHelper.SimpleCallback {
 
@@ -34,8 +32,8 @@ public class RecyclerViewTouchHelper extends ItemTouchHelper.SimpleCallback {
         final int position = viewHolder.getAdapterPosition();
         if (direction == ItemTouchHelper.RIGHT){
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
-            builder.setTitle("Delete task");
-            //builder.setMessage("Are you sure ?");
+            builder.setTitle("Delete Task");
+            builder.setMessage("Are You Sure ?");
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -60,7 +58,6 @@ public class RecyclerViewTouchHelper extends ItemTouchHelper.SimpleCallback {
 
         new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                 .addSwipeLeftBackgroundColor(ContextCompat.getColor(adapter.getContext() , R.color.colorPrimaryDark))
-                .addCornerRadius(TypedValue.COMPLEX_UNIT_DIP, 8)
                 .addSwipeLeftActionIcon(R.drawable.ic_edit)
                 .addSwipeRightBackgroundColor(ContextCompat.getColor(adapter.getContext() , R.color.colorPrimary))
                 .addSwipeRightActionIcon(R.drawable.ic_delete)
