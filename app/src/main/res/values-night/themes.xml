@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme (dark) -->
+    <style name="Theme.ToDoApp" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="android:textColorSecondary">@color/colorWhite</item>
+    </style>
+
+    <style name="RoundedButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearance">@style/RoundedShapeAppearance</item>
+    </style>
+
+    <style name="RoundedShapeAppearance" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+</resources>
