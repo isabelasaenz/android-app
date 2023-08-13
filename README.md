@@ -1,4 +1,8 @@
-Simple Android application for managing tasks. It allows users to add, edit, and delete tasks. This app is built using Java and utilizes the Android SDK.
+# Simple ToDo App
+
+Simple Android application for managing tasks. It aims to provide a minimalist and easy-to-use task management experience, similar to using sticky notes. The app consists of a single screen with a list of tasks, allowing users to quickly add, edit, and delete tasks.
+
+This app is built using Java and utilizes the Android SDK.
 
 ## Features
 
@@ -9,6 +13,5 @@ Simple Android application for managing tasks. It allows users to add, edit, and
 
 ## Screenshots
 
-![Imagem do WhatsApp de 2023-08-03 à(s) 17 41 59](https://github.com/isabelasaenz/android-app/assets/61302115/acfb8a1e-c67c-459a-b1d5-d7a9a32f9870)
-![Imagem do WhatsApp de 2023-08-03 à(s) 17 42 00](https://github.com/isabelasaenz/android-app/assets/61302115/7d6c66b6-bb3b-4068-8862-fe4ad728dfc3)
-![Imagem do WhatsApp de 2023-08-03 à(s) 17 42 00](https://github.com/isabelasaenz/android-app/assets/61302115/4b24082c-9aeb-455a-a771-9a02d279edeb)
+![App Screenshots](https://github.com/isabelasaenz/android-app/assets/61302115/7b689a92-73a0-4830-baa5-0ff5eb1266b0)
+
