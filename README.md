@@ -1,4 +1,4 @@
-# Simple ToDo App
+# To-Do List
 
 Simple Android application for managing tasks. It aims to provide a minimalist and easy-to-use task management experience, similar to using sticky notes. The app consists of a single screen with a list of tasks, allowing users to quickly add, edit, and delete tasks.
 
