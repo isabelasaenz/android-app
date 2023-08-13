@@ -6,6 +6,7 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+// Splash screen activity
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -13,13 +14,15 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        Handler handler  = new Handler();
+        // Create a new handler to delay the start of the main activity
+        Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                // Start the main activity after a delay of 2000 milliseconds (2 seconds)
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                finish();
+                finish(); // Finish the splash activity to prevent going back to it
             }
-        }, 2000);
+        }, 2000); // Delay duration in milliseconds
     }
 }

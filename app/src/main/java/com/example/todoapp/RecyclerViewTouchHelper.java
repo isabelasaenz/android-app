@@ -14,24 +14,29 @@ import com.example.todoapp.Adapter.ToDoAdapter;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
+// Custom RecyclerView item touch helper for swipe actions
 public class RecyclerViewTouchHelper extends ItemTouchHelper.SimpleCallback {
 
-    private ToDoAdapter adapter;
+    private final ToDoAdapter adapter;
 
+    // Constructor to initialize the adapter
     public RecyclerViewTouchHelper(ToDoAdapter adapter) {
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.adapter = adapter;
     }
 
+    // Called when an item is moved, not used in this case
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
         return false;
     }
 
+    // Called when an item is swiped
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         final int position = viewHolder.getAdapterPosition();
-        if (direction == ItemTouchHelper.RIGHT){
+        if (direction == ItemTouchHelper.RIGHT) {
+            // Show a confirmation dialog for deleting a task
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
             builder.setTitle("Delete task");
             builder.setMessage("Are you sure?");
@@ -49,11 +54,13 @@ public class RecyclerViewTouchHelper extends ItemTouchHelper.SimpleCallback {
             });
             AlertDialog dialog = builder.create();
             dialog.show();
-        }else{
+        } else {
+            // Edit the task when swiped in the opposite direction
             adapter.editItem(position);
         }
     }
 
+    // Customize the appearance of the swiped item
     @Override
     public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
 
@@ -67,5 +74,4 @@ public class RecyclerViewTouchHelper extends ItemTouchHelper.SimpleCallback {
                 .decorate();
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
-
 }

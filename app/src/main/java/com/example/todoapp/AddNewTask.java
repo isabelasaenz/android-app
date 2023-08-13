@@ -22,18 +22,20 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 public class AddNewTask extends BottomSheetDialogFragment {
     public static final String TAG = "AddNewTask";
 
-    //widgets
+    // Widgets
     private EditText mEditText;
     private Button mSaveButton;
     private DatabaseHelper myDatabase;
 
-    public static AddNewTask newInstance(){
+    // Create a new instance of AddNewTask
+    public static AddNewTask newInstance() {
         return new AddNewTask();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.add_task, container, false);
         return v;
     }
@@ -42,52 +44,56 @@ public class AddNewTask extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Initialize UI elements
         mEditText = view.findViewById(R.id.edit_text);
         mSaveButton = view.findViewById(R.id.save_button);
         myDatabase = new DatabaseHelper(getActivity());
 
         boolean isUpdate = false;
 
+        // Check if the fragment is being used for updating a task
         Bundle bundle = getArguments();
-        if(bundle != null){
+        if (bundle != null) {
             isUpdate = true;
             String task = bundle.getString("task");
             mEditText.setText(task);
 
-            if(task.length() > 0){
+            if (task.length() > 0) {
                 mSaveButton.setEnabled(false);
             }
         }
+
+        // Add text change listener to enable/disable save button based on text input
         mEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(toString().equals("")){
+                if (charSequence.toString().equals("")) {
                     mSaveButton.setEnabled(false);
                     mSaveButton.setBackgroundColor(Color.GRAY);
                 } else {
                     mSaveButton.setEnabled(true);
                     mSaveButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
                 }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
+
         boolean finalIsUpdate = isUpdate;
+        // Set click listener for the save button
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String text = mEditText.getText().toString();
 
-                if(finalIsUpdate){
+                // Perform update or insert operation based on the flag
+                if (finalIsUpdate) {
                     myDatabase.updateTask(bundle.getInt("id"), text);
                 } else {
                     ToDoModel item = new ToDoModel();
@@ -95,7 +101,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                     item.setStatus(0);
                     myDatabase.insertTask(item);
                 }
-                dismiss();
+                dismiss(); // Close the bottom sheet dialog
             }
         });
     }
@@ -103,27 +109,10 @@ public class AddNewTask extends BottomSheetDialogFragment {
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
+        // Notify the activity when the dialog is dismissed
         Activity activity = getActivity();
-        if(activity instanceof OnDialogCloseListener){
-            ((OnDialogCloseListener)activity).onDialogClose(dialog);
+        if (activity instanceof OnDialogCloseListener) {
+            ((OnDialogCloseListener) activity).onDialogClose(dialog);
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
